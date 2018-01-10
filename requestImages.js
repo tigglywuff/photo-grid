@@ -45,8 +45,15 @@ function photoToUrl(photo) {
     return "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + ".jpg";
 }
 
+/**
+  * Used to check why some images I saw were broken, seems like a flickr issue though.
+  */
+function photoToSite(photo) {
+    return "https://www.flickr.com/photos/" + photo.owner + "/" + photo.id + "/";
+}
+
 function main() {
-    var url = generateFlickrUrl("puppies");
+    var url = generateFlickrUrl("frenchies");
     getAsync(url, function (x) {
         x = JSON.parse(x);
 
@@ -54,11 +61,28 @@ function main() {
             var element = document.createElement("img");
             element.setAttribute("src", photoToUrl(photo));
             element.setAttribute("class", "square");
+            element.setAttribute("onclick", "showLightbox()");
 
-            document.body.appendChild(element);
+            document.getElementById("grid").appendChild(element);
         });
         
     });
+}
+
+function showLightbox() {
+    var elements = document.getElementsByClassName("lightbox"),
+        i;
+    for (i = 0; i < elements.length; i++) {
+        elements[i].style.display = "block";
+    }
+}
+
+function hideLightbox() {
+    var elements = document.getElementsByClassName("lightbox"),
+        i;
+    for (i = 0; i < elements.length; i++) {
+        elements[i].style.display = "none";
+    }
 }
 
 main();
