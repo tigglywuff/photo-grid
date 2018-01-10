@@ -1,0 +1,12 @@
+body {
+    background-color: powderblue;
+}
+
+.square {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 25px;
+    border: 1px solid black;
+    margin: 10px;
+}
