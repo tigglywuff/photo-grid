@@ -128,7 +128,7 @@ function promiseGetFlickrPhotos(tag) {
         "title": "{title}"
     };
     var url,
-        photoArr;
+        photoArr = [];
 
     // Generate Flickr URL using tag
     url = getFlickrUrl(tag);
@@ -138,7 +138,10 @@ function promiseGetFlickrPhotos(tag) {
         // It comes back as a string I think (working offline is rough!)
         response = JSON.parse(response);
 
-        response.forEach(function (flickrObject) {
+        console.log(typeof response);
+        console.log(response);
+
+        response.photos.photo.forEach(function (flickrObject) {
             photoArr.push({
                 "url": flickrTemplate.url.template(flickrObject),
                 "img": flickrTemplate.img.template(flickrObject),
