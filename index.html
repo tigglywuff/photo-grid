@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="main.css">
   <script src="./getImages.js" type="text/javascript"></script>
   <script src="./generateGrid.js" type="text/javascript"></script>
+  <script src="https://use.fontawesome.com/40a60f093a.js"></script>
 </head>
 <body>
 
@@ -15,20 +16,27 @@
 
   <div id="lightbox" class="lightbox" style="display: none;">
 
-    <div id="lightbox-content" class="lightbox">
 
-      <div class="column" onclick="nav(-1)">1</div>
-      <div class="column"><img id="lightbox-img">
-      <p></p>
+
+
+      <div id="lightbox-content" class="column">
+
+        <i class="fa fa-arrow-left fa-2x left" aria-hidden="true" onclick="nav(-1)"></i>
+        <i class="fa fa-arrow-right fa-2x right" aria-hidden="true" onclick="nav(1)"></i>
+
+        <img id="lightbox-img">
+
       </div>
-      <div class="column" onclick="nav(1)">2</div>
 
-    <!-- <img class="lightbox" src="https://farm5.staticflickr.com/4603/39130785184_6430e9d688.jpg"> -->
-    </div>
+      <div id="lightbox-title">
+        <p ></p>
+      </div>
+
+
 
     <div id="lightbox-bg" onclick="hideLightbox()"></div>
   </div>
-  <!-- <div id="lightbox-bg" class="lightbox"></div> -->
+
 
   <div id="grid">
   </div>

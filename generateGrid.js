@@ -4,7 +4,7 @@ function showLightbox(index) {
 
     var lbContent = document.getElementById("lightbox-content");
     var lbImg = lbContent.getElementsByTagName("img")[0];
-    var lbTitle = lbContent.getElementsByTagName("p")[0];
+    var lbTitle = document.getElementById("lightbox-title");
 
     // var lbImg = document.getElementById("lightbox-img");
     lbImg.setAttribute("src", pgphotos[index].img);
@@ -66,11 +66,13 @@ function renderGrid(photos) {
 
 var pgphotos = [];
 
-function search() {
-	var searchString = document.getElementById("input").value;
+function search(string) {
+	var searchString = string || document.getElementById("input").value;
 
 	return promiseGetFlickrPhotos(searchString).then(function (photos) {
         pgphotos = photos;
 		renderGrid(photos);
 	});
 }
+
+search("frenchie puppies");
