@@ -3,8 +3,14 @@
 function showLightbox(index) {
 
     var lbContent = document.getElementById("lightbox-content");
-    var lbImg = lbContent.getElementsByTagName("img")[0];
+    // var lbImg = lbContent.getElementsByTagName("img")[0];
+    var lbImg = document.getElementById("lightbox-img");
     var lbTitle = document.getElementById("lightbox-title");
+
+    var lbs = document.getElementsByClassName("lightbox");
+    for (var i = 0; i < lbs.length; i++) {
+        lbs[i].style.display = "block";
+    }
 
     // var lbImg = document.getElementById("lightbox-img");
     lbImg.setAttribute("src", pgphotos[index].img);
@@ -15,8 +21,11 @@ function showLightbox(index) {
 }
 
 function hideLightbox() {
-    document.getElementById("lightbox").style.display = "none";
-    console.log("hide");
+
+    var lbs = document.getElementsByClassName("lightbox");
+    for (var i = 0; i < lbs.length; i++) {
+        lbs[i].style.display = "none";
+    }
 }
 
 function nav(direction) {
@@ -38,7 +47,10 @@ function renderGrid(photos) {
     var i;
 
 	// Clear out the existing grid
-	document.getElementById("grid").innerHTML = "";
+    var grid = document.getElementById("grid");
+    if (grid) {
+        grid.innerHTML = "";
+    }
 
     for (i = 0; i < photos.length; i++) {
         var element = document.createElement("img");
