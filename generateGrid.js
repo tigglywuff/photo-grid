@@ -97,6 +97,7 @@ function search(string) {
 
         // Clear the input field
         inputElement.value = "";
+        inputElement.setAttribute("placeholder", searchString);
 
         // Render photos
 		renderGrid(photos);
