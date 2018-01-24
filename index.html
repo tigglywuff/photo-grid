@@ -2,7 +2,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
   <link rel="stylesheet" href="main.css">
-
 </head>
 <body>
 
@@ -10,17 +9,16 @@
     <input id="input" placeholder="Type a search key here." style="margin-bottom: 10px;" /><br>
     <button onclick="search()">Search</button>
   </div>
-  
+
   <div id="lightbox" class="overlay lightbox" style="display: none;" onclick="hideLightbox()">
     <img id="lightbox-img">  
   </div>
 
   <div class="lightbox menu">
-    <div class="menu-arrow" style="width: 50px; left: 0px; float: left;" onclick="nav(-1)"><</div>
-    <div style="float: left; width: calc(100% - 100px)" id="lightbox-title"></div>
-    <div class="menu-arrow" style="width: 50px;  float: right;" onclick="nav(1)">></div>
+    <div class="menu-arrow" style="width: 50px; left: 0px; float: left;" onclick="nav(-1)">&lt;</div>
+    <div id="lightbox-title" style="float: left; width: calc(100% - 100px)"></div>
+    <div class="menu-arrow" style="width: 50px;  float: right;" onclick="nav(1)">&gt;</div>
   </div>
-
 
   <div id="grid"></div>
 
