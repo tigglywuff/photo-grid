@@ -1,9 +1,6 @@
 /**
   * This library performs a call to a (in our class, Flickr) photo API and return an array of
   * photo objects. Each object is required to have 2 properties: img, title
-  *
-  * For the purposes of testing I have included property url to check back to the original Flickr
-  * source image.
   */
 
 'use strict';
@@ -123,10 +120,10 @@ function getFlickrUrl(tag) {
   */
 function promiseGetFlickrPhotos(tag) {
     const flickrTemplate = {
-        "url": "https://www.flickr.com/photos/{owner}/{id}/",
         "img": "https://farm{farm}.staticflickr.com/{server}/{id}_{secret}.jpg",
         "title": "{title}"
     };
+
     var url,
         photoArr = [];
 
@@ -138,12 +135,8 @@ function promiseGetFlickrPhotos(tag) {
         // It comes back as a string I think (working offline is rough!)
         response = JSON.parse(response);
 
-        console.log(typeof response);
-        console.log(response);
-
         response.photos.photo.forEach(function (flickrObject) {
             photoArr.push({
-                "url": flickrTemplate.url.template(flickrObject),
                 "img": flickrTemplate.img.template(flickrObject),
                 "title": flickrTemplate.title.template(flickrObject)
             });
