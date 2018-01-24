@@ -1,7 +1,13 @@
 'use strict';
 
+/* Array of photo objects to be stored in global space. Needs to be available so that nav and render
+functions correctly. */
 var pgphotos = [];
 
+/**
+ * Renders the lightbox for a specific photo index
+ * @params {int} index
+ */
 function showLightbox(index) {
     var lbImg = document.getElementById("lightbox-img"),
         lbTitle = document.getElementById("lightbox-title"),
@@ -18,6 +24,9 @@ function showLightbox(index) {
     }
 }
 
+/**
+  * Hides the lightbox
+  */
 function hideLightbox() {
     var lbElements = document.getElementsByClassName("lightbox");
 
@@ -26,6 +35,12 @@ function hideLightbox() {
     }
 }
 
+/**
+  * Renders a different photo based on how many indices to traverse in the pgphotos array. Accepts
+  * both positive and negative numbers. Intended to be used with 1 and -1. If any larger magnitude
+  * numbers are specified, should function accordingly EXCEPT in the case where a bound is exceeded.
+  * @param {int} direction
+  */
 function nav(direction) {
     // Get the currIndex. Note: nav should only be called after one has already been opened
     var currIndex = parseInt(document.getElementById("lightbox-img").getAttribute("photoId"));
@@ -43,6 +58,10 @@ function nav(direction) {
     showLightbox(currIndex);
 }
 
+/**
+  * Renders the photo grid given an array of photo objects.
+  * @params {array.object} photos An array of photo objects.
+  */
 function renderGrid(photos) {
     var i;
 
@@ -64,13 +83,22 @@ function renderGrid(photos) {
     }
 }
 
+/**
+  * Searches for photos then renders the photo grid with them.
+  * @params {string} string Optionally specify a string to search for. When not specified, uses the
+  *                         value from the input field on the UI.
+  */
 function search(string) {
-    var inputElement = document.getElementById("input");
-	var searchString = string || inputElement.value;
+    var inputElement = document.getElementById("input"),
+	    searchString = string || inputElement.value;
 
 	return promiseGetFlickrPhotos(searchString).then(function (photos) {
         pgphotos = photos;
+
+        // Clear the input field
         inputElement.value = "";
+
+        // Render photos
 		renderGrid(photos);
 	});
 }
