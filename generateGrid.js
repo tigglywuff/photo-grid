@@ -104,5 +104,40 @@ function search(string) {
 	});
 }
 
-// Include a default set of images when the page loads
-search("frenchie puppies");
+/**
+  * A main function to add some defaults to the page on load.
+  */
+function main() {
+
+    // Add a listener to the input field so it recognizes enter
+    document.getElementById("input").addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          search();
+        }
+      });
+
+    // Add a listener to the left/right menu for arrow keys and the escape key
+    document.onkeydown = function (event) {
+        if (document.getElementsByClassName("lightbox")[0].style.display !== "none") {
+            switch (event.keyCode) {
+                case 37:
+                    nav(-1);
+                    break;
+                case 39:
+                    nav(1);
+                    break;
+                case 27:
+                    hideLightbox();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    // Include a default set of images when the page loads
+    search("frenchie puppies");
+}
+
+main();
